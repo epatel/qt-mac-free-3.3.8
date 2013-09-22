@@ -177,7 +177,7 @@ struct QCursorData : public QShared
 #ifdef QMAC_USE_BIG_CURSOR_API
 	char *big_cursor_name;
 #endif
-	CursorImageRec *ci;
+	struct CursorImageRec *ci;
 	struct {
 	    QMacAnimateCursor *anim;
 	    ThemeCursor curs;

@@ -102,8 +102,8 @@ tools {
 
         mac:!x11:!embedded:SOURCES += $$TOOLS_CPP/qsettings_mac.cpp
 	mac {
-		SOURCES+=3rdparty/dlcompat/dlfcn.c
-		INCLUDEPATH+=3rdparty/dlcompat
+#		SOURCES+=3rdparty/dlcompat/dlfcn.c
+#		INCLUDEPATH+=3rdparty/dlcompat
 	    }
 	unix:SOURCES += $$TOOLS_CPP/qlibrary_unix.cpp
 

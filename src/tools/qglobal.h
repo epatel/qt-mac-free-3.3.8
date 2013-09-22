@@ -184,7 +184,7 @@
 #       define MAC_OS_X_VERSION_10_4 MAC_OS_X_VERSION_10_3 + 1
 #  endif
 #  if (MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_4)
-#    error "This version of Mac OS X is unsupported"
+//#    error "This version of Mac OS X is unsupported"
 #  endif
 #endif
 
