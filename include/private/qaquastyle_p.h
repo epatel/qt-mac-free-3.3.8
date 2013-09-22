@@ -1,0 +1,1 @@
+../../src/styles/qaquastyle_p.h

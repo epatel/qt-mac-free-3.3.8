@@ -1,0 +1,129 @@
+			  INSTALLING Qt/Mac Version 3.3.8 (for Mac OS X)
+
+
+1.  Unpack the archive if you have not done so already:
+
+	cd /Developer
+	gnutar xzvf Full_Path_to_Directory_You_Unpacked_To/qt-mac-free-3.3.8.tar.gz
+
+    This creates the directory /Developer/qt-mac-free-3.3.8 containing the
+    files from the main archive.
+
+    Rename qt-mac-free-3.3.8 to qt (or make a symlink):
+
+	mv qt-mac-free-3.3.8 qt
+
+    The rest of this file assumes that Qt is unpacked in /Developer/qt.
+
+2.  Set some environment variables in the file .login (or .profile or
+    something else depending on your shell) in your home directory.
+    Create this file if it is not already there. You can check your shell
+    by typing:
+
+    finger Your_Login
+
+    The variables that you must set are:
+
+	QTDIR		   - wherever you installed Qt
+	PATH		   - to locate the moc program and other Qt tools
+	DYLD_LIBRARY_PATH  - for the shared Qt library
+
+    This is done like this:
+
+    In .login (in case your shell is csh or tcsh), add the following lines:
+
+	setenv QTDIR /Developer/qt
+	setenv PATH $QTDIR/bin:$PATH
+	setenv DYLD_LIBRARY_PATH $QTDIR/lib:$DYLD_LIBRARY_PATH
+
+        ***************************WARNING******************************
+        * Some versions of tcsh do not understand the expansion of empty
+        * variables. If you experience any error messages with the above
+        * instructions, you may want to replace them with:
+        *
+	*  setenv QTDIR /Developer/qt
+	*  setenv PATH $QTDIR/bin:$PATH
+	*  setenv DYLD_LIBRARY_PATH $QTDIR/lib
+
+    In .profile (if your shell is bash), add the following lines:
+
+	QTDIR=/Developer/qt
+	PATH=$QTDIR/bin:$PATH
+	DYLD_LIBRARY_PATH=$QTDIR/lib:$DYLD_LIBRARY_PATH
+
+	export QTDIR PATH DYLD_LIBRARY_PATH
+
+    If you use a different shell, please modify your environment variables
+    accordingly.
+
+    After you have done this, you will need to login again, or re-source the
+    profile before continuing, so that $QTDIR, $PATH, and $DYLD_LIBRARY_PATH
+    are set. Without these the installation will halt with an error message.
+
+3.  Make a symbolic link from $QTDIR/doc/man to $QTDIR/man by typing the following:
+
+        ln -s $QTDIR/doc/man $QTDIR/man
+
+    This will give you the man pages for the commandline Qt programs.
+
+4.  If you have the commercial edition of Qt, install your license
+    file as $HOME/.qt-license.
+
+5.  Building.
+
+    This step compiles the Qt library, and builds the example programs,
+    the tutorial, and the tools (e.g. Qt Designer, etc.).
+
+    Type:
+
+        cd $QTDIR
+	./configure
+
+    This will configure the Qt library for your machine.  Run ./configure -help
+    to get a list of configuration options. 
+
+    To create the library and compile all the examples and the
+    tutorial, type:
+
+	/usr/bin/make
+
+    If your platform or compiler is not supported, please contact us at
+    qt-bugs@trolltech.com so that we can assist you. If it is supported
+    but you have problems, see http://www.trolltech.com/platforms/ for
+    information on known issues.
+
+
+6.  Launching Qt applications from the Finder.
+
+    If you built Qt using the -static option, your executables will contain the
+    Qt library and can be run from Finder automatically. Otherwise, your
+    executables will need to use the Qt library on your system. You can achieve
+    this by using symbolic links.
+
+    We recommend making these symbolic links (if you have configured Qt with
+    -thread [ie threading enabled], please change the libqt below with
+    libqt-mt):
+
+    ln -sf $QTDIR/lib/libqt.3.dylib /usr/lib
+    ln -sf $QTDIR/lib/libqui.1.dylib /usr/lib
+
+    You may need to have 'administrator' access to do this, (in which
+    case, precede each command with 'sudo', e.g. 'sudo ln -s ...'). If
+    you use sudo you'll be prompted for your password.
+
+    If you do not have administrator access, or you would prefer to do
+    a user install (rather than system install) of the libraries you 
+    can do (if you have configured Qt with -thread [ie threading enabled],
+    please change the libqt below with libqt-mt):
+
+    ln -sf $QTDIR/lib/libqt.3.dylib $HOME/lib
+    ln -sf $QTDIR/lib/libqui.1.dylib $HOME/lib
+
+    Note: you can also achieve similar functionality by adding your
+    DYLD_LIBRARY_PATH to the GUI's environment.
+
+That's all! Qt is now installed. Qt's documentation can be read with
+Qt Assistant or by any web browser; the contents page is:
+    $QTDIR/doc/html/index.html
+
+See the PLATFORM file for details pertaining to your environment.
